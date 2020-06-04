@@ -20,7 +20,8 @@
         // }());
         axios({
             method: 'get',
-            url: '//api.handsetdetection.com/apiv4/js/64735.js'
+            url: '//api.handsetdetection.com/apiv4/js/64735.js',
+            responseType: 'json'
         })
         .then((data)=>{
             console.log(data)
