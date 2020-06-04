@@ -5,18 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
     <script type='text/javascript'>
-        (function () {
-            var hd,re,dom,d=document;
-            re = d.referrer.toLowerCase().replace(/https?:\/\//i,'').split('/',1)[0];
-            dom = d.domain.toLowerCase();
-            if (re != dom) {
-                hd = d.createElement('script');
-                hd.async = true;
-                hd.src = '//api.handsetdetection.com/apiv4/js/64735.js';
-                d.getElementsByTagName("head")[0].appendChild(hd);
-            }
-        }());
+        // (function () {
+        //     var hd,re,dom,d=document;
+        //     re = d.referrer.toLowerCase().replace(/https?:\/\//i,'').split('/',1)[0];
+        //     dom = d.domain.toLowerCase();
+        //     if (re != dom) {
+        //         hd = d.createElement('script');
+        //         hd.async = true;
+        //         hd.src = '//api.handsetdetection.com/apiv4/js/64735.js';
+        //         d.getElementsByTagName("head")[0].appendChild(hd);
+        //     }
+        // }());
+        axios({
+            method: 'get',
+            url: '//api.handsetdetection.com/apiv4/js/'
+        }).then((data)=>{
+            console.log(data)
+        })
         </script>
 </head>
 <body>
