@@ -5,6 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <script type='text/javascript'>
+        (function () {
+            var hd,re,dom,d=document;
+            re = d.referrer.toLowerCase().replace(/https?:\/\//i,'').split('/',1)[0];
+            dom = d.domain.toLowerCase();
+            if (re != dom) {
+                hd = d.createElement('script');
+                hd.async = true;
+                hd.src = '//api.handsetdetection.com/apiv4/js/64735.js';
+                d.getElementsByTagName("head")[0].appendChild(hd);
+            }
+        }());
+        </script>
 </head>
 <body>
     <picture>
