@@ -7,29 +7,23 @@
     <title>Document</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js" integrity="sha256-T/f7Sju1ZfNNfBh7skWn0idlCBcI3RwdLSS4/I7NQKQ=" crossorigin="anonymous"></script>
     <script type='text/javascript'>
-        // (function () {
-        //     var hd,re,dom,d=document;
-        //     re = d.referrer.toLowerCase().replace(/https?:\/\//i,'').split('/',1)[0];
-        //     dom = d.domain.toLowerCase();
-        //     if (re != dom) {
-        //         hd = d.createElement('script');
-        //         hd.async = true;
-        //         hd.src = '//api.handsetdetection.com/apiv4/js/64735.js';
-        //         d.getElementsByTagName("head")[0].appendChild(hd);
-        //     }
-        // }());
-        axios({
-            method: 'GET',
-            url: '//api.handsetdetection.com/apiv4/js/64735.js',
-            responseType: 'json'
+       fetch("http://api.handsetdetection.com/apiv4/device/detect/64735.json", {
+            body: {
+                "user-agent": window.navigator.userAgent
+            },
+            headers: {
+                Authorization: "Basic MWZlMzY4NzY2YjpONHQ0Y0xjR1Q3VDE2Y3Bw",
+                "Content-Type": "application/json"
+            },
+            method: "POST"
         })
-        .then((response)=>{
-            console.log(response.data)
-            return response.data;
+        .then(res => {
+            return res.json()
         })
-        .then((data)=>{
-            console.log(data)
-        });
+        .then(res => {
+           console.log(res)
+        })
+        .catch(er=> console.error(er))
         </script>
 </head>
 <body>
