@@ -35,6 +35,7 @@
 				log.innerHTML +=
 					'<div>window.DeviceOrientationEvent Exist</div>';
 				log.innerHTML += '<div>requestPermission</div>';
+				let answer = false;
 				window.DeviceOrientationEvent.requestPermission().then(
 					(permissionState) => {
 						log.innerHTML += `<div>Answer: ${JSON.stringify(
@@ -51,7 +52,18 @@
 							true
 						);
 					}
-				);
+				).catch(e => {
+					log.innerHTML += `<div>${JSON.stringify(e.message)}</div>`;
+				});
+				setTimeout(function() {
+					if (answer) return;
+					log.innerHTML += '<div>Attach Event setTimeout</div>';
+						window.addEventListener(
+							'deviceorientation',
+							handlerDeviceOrientation,
+							true
+						);
+				}, 3000);
 			} else {
 				log.innerHTML +=
 					'<div>window.DeviceOrientationEvent NOT Exist</div>';
