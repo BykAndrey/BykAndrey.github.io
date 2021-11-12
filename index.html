@@ -7,16 +7,20 @@
 		<title>Document</title>
 	</head>
 	<body>
+
+		<button>REQUEST DeviceOrientationEvent</button>
 		<div class="alpha">0deg</div>
 		<div class="beta">0deg</div>
 		<div class="gamma">0deg</div>
 		LOG:
 		<div class="log"></div>
 		<script>
+			var button = document.querySelector('button');
 			var log = document.querySelector('.log');
 			var alpha = document.querySelector('.alpha');
 			var beta = document.querySelector('.beta');
 			var gamma = document.querySelector('.gamma');
+			
 			const handlerDeviceOrientation = (event) => {
 				log.innerHTML += `<div>${JSON.stringify({
 					alpha: event.alpha,
@@ -27,7 +31,10 @@
 				beta.innerText = event.beta.toFixed(1);
 				gamma.innerText = event.gamma.toFixed(1);
 			};
-			if (
+			
+
+			const req = () => {
+				if (
 				window.DeviceOrientationEvent &&
 				typeof window.DeviceOrientationEvent.requestPermission ===
 					'function'
@@ -74,6 +81,11 @@
 					true
 				);
 			}
+			}
+			
+
+
+			button.addEventListener('click', req);
 		</script>
 	</body>
 </html>
