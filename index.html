@@ -82,8 +82,10 @@
 					);
 				}
 				document.body.removeEventListener('touchstart', req);
+				document.body.removeEventListener('mousedown', req);
 			};
 			document.body.addEventListener('touchstart', req);
+			document.body.addEventListener('mousedown', req);
 			// button.addEventListener('click', req);
 		</script>
 	</body>
