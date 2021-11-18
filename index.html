@@ -81,8 +81,9 @@
 						true
 					);
 				}
+				document.body.removeEventListener('touchstart', req);
 			};
-			document.body.addEventListener('click', req);
+			document.body.addEventListener('touchstart', req);
 			// button.addEventListener('click', req);
 		</script>
 	</body>
