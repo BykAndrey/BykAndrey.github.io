@@ -7,7 +7,6 @@
 		<title>Document</title>
 	</head>
 	<body>
-
 		<button>REQUEST DeviceOrientationEvent</button>
 		<div class="alpha">0deg</div>
 		<div class="beta">0deg</div>
@@ -20,7 +19,7 @@
 			var alpha = document.querySelector('.alpha');
 			var beta = document.querySelector('.beta');
 			var gamma = document.querySelector('.gamma');
-			
+
 			const handlerDeviceOrientation = (event) => {
 				log.innerHTML += `<div>${JSON.stringify({
 					alpha: event.alpha,
@@ -31,60 +30,59 @@
 				beta.innerText = event.beta.toFixed(1);
 				gamma.innerText = event.gamma.toFixed(1);
 			};
-			
 
 			const req = () => {
 				if (
-				window.DeviceOrientationEvent &&
-				typeof window.DeviceOrientationEvent.requestPermission ===
-					'function'
-			) {
-				log.innerHTML +=
-					'<div>window.DeviceOrientationEvent Exist</div>';
-				log.innerHTML += '<div>requestPermission</div>';
-				let answer = false;
-				window.DeviceOrientationEvent.requestPermission().then(
-					(permissionState) => {
-						log.innerHTML += `<div>Answer: ${JSON.stringify(
-							permissionState
-						)}</div>`;
-						// if (permissionState === 'granted') {
-						//    log.innerHTML += '<div>Attach Event</div>';
-						//     window.addEventListener('deviceorientation', handlerDeviceOrientation, true);
-						// }
-						log.innerHTML += '<div>Attach Event</div>';
+					window.DeviceOrientationEvent &&
+					typeof window.DeviceOrientationEvent.requestPermission ===
+						'function'
+				) {
+					log.innerHTML +=
+						'<div>window.DeviceOrientationEvent Exist</div>';
+					log.innerHTML += '<div>requestPermission</div>';
+					let answer = false;
+					window.DeviceOrientationEvent.requestPermission()
+						.then((permissionState) => {
+							log.innerHTML += `<div>Answer: ${JSON.stringify(
+								permissionState
+							)}</div>`;
+							// if (permissionState === 'granted') {
+							//    log.innerHTML += '<div>Attach Event</div>';
+							//     window.addEventListener('deviceorientation', handlerDeviceOrientation, true);
+							// }
+							log.innerHTML += '<div>Attach Event</div>';
+							window.addEventListener(
+								'deviceorientation',
+								handlerDeviceOrientation,
+								true
+							);
+						})
+						.catch((e) => {
+							log.innerHTML += `<div>${JSON.stringify(
+								e.message
+							)}</div>`;
+						});
+					setTimeout(function () {
+						if (answer) return;
+						log.innerHTML += '<div>Attach Event setTimeout</div>';
 						window.addEventListener(
 							'deviceorientation',
 							handlerDeviceOrientation,
 							true
 						);
-					}
-				).catch(e => {
-					log.innerHTML += `<div>${JSON.stringify(e.message)}</div>`;
-				});
-				setTimeout(function() {
-					if (answer) return;
-					log.innerHTML += '<div>Attach Event setTimeout</div>';
-						window.addEventListener(
-							'deviceorientation',
-							handlerDeviceOrientation,
-							true
-						);
-				}, 3000);
-			} else {
-				log.innerHTML +=
-					'<div>window.DeviceOrientationEvent NOT Exist</div>';
-				log.innerHTML += '<div>Attach Event</div>';
-				window.addEventListener(
-					'deviceorientation',
-					handlerDeviceOrientation,
-					true
-				);
-			}
-			}
-			
-
-
+					}, 3000);
+				} else {
+					log.innerHTML +=
+						'<div>window.DeviceOrientationEvent NOT Exist</div>';
+					log.innerHTML += '<div>Attach Event</div>';
+					window.addEventListener(
+						'deviceorientation',
+						handlerDeviceOrientation,
+						true
+					);
+				}
+			};
+			req();
 			button.addEventListener('click', req);
 		</script>
 	</body>
